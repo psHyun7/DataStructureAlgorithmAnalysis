@@ -1,0 +1,79 @@
+2.5.1 BST Operations
+
+Original BST:
+     ____8
+    /     \
+  _3__     10
+ /    \      \
+1      6      14
+ \    / \
+  2  5   7
+
+1. Insert 9
+     ____8__
+    /       \
+  _3__       10
+ /    \     /  \
+1      6   9    14
+ \    / \
+  2  5   7
+
+2. Remove 2
+     ____8__
+    /       \
+  _3__       10
+ /    \     /  \
+1      6   9    14
+      / \
+     5   7
+
+3. Insert 12
+     ____8__
+    /       \
+  _3__       10
+ /    \     /  \
+1      6   9    14
+      / \      /
+     5   7    12
+4. Remove 6           
+     ____8__           |          ____8__
+    /       \          |         /       \
+  _3__       10        |       _3__       10
+ /    \     /  \      o r     /    \     /  \
+1      7   9    14     |     1      5   9    14
+      /        /       |             \      /
+     5        12       |              7    12
+
+
+
+2.5.2. Bonus Mission
+
+def binarySearch(item, arr): 
+  lower_bound = 0
+  upper_bound = len(arr) - 1
+  
+  while lower_bound <= upper_bound: 
+    mid_value = (lower_bound + upper_bound) // 2
+    if arr[mid_value] < item: 
+      lower_bound = mid_value + 1
+    elif arr[mid_value] > item: 
+      upper_bound = mid_value - 1
+    else: 
+      return mid_value
+  return -1
+
+def binarySearchRecursion(item, arr, lower_bound=0, upper_bound=0):
+  if upper_bound == 0:
+    upper_bound = len(arr) - 1
+
+  if upper_bound >= lower_bound:
+    mid_value = (lower_bound + upper_bound) // 2
+    if arr[mid_value] < item:
+      return binarySearchRecursion(item, arr, mid_value+1, upper_bound)
+    elif arr[mid_value] > item:
+      return binarySearchRecursion(item, arr, lower_bound, mid_value-1)
+    else:
+      return mid_value
+
+  else:
+    return -1
