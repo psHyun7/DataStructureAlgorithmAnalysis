@@ -58,7 +58,7 @@ def merge_sort(arr):
       else:
         arr[i+j] = right[j]
         j += 1
-    if i < len(left):
+    while i < len(left):
       arr[i+j] = left[i]
       i += 1
     while j < len(right):
