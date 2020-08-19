@@ -1,0 +1,68 @@
+1. For the list below, write out each step of the sorting process for bubble and merge sorts.
+(7, 2, 23, 6, 30, 15, 30, 22)
+
+Bubble Sort:
+Original: (7, 2, 23, 6, 30, 15, 30, 22)
+Pass #1: (2, 7, 6, 23, 15, 30, 22, 30)
+Pass #2: (2, 6, 7, 15, 23, 22, 30, 30)
+Pass #3: (2, 6, 7, 15, 22, 23, 30, 30)
+Pass #4: Sorted!
+
+Merge Sort:
+Original : (7, 2, 23, 6, 30, 15, 30, 22)
+Splitting: (7, 2, 23, 6) (30, 15, 30, 22)
+          (7, 2) (23, 6) (30, 15) (30, 22)
+        (7) (2) (23) (6) (30) (15) (30) (22)
+Merging:  (2, 7) (6, 23) (15, 30) (22, 30)
+           (2, 6, 7, 23) (16, 22, 30, 30)
+           (2, 6, 7, 16, 22, 23, 30, 30)
+Sorted!
+
+
+
+Bonus:
+
+def bubble_sort(arr):
+  is_sorted = False
+  while is_sorted == False:
+    # assume the elements are sorted
+    is_sorted = True
+
+    for i in range(len(arr)-1):
+      if arr[i] > arr[i+1]:
+        storage = arr[i]
+        arr[i] = arr[i+1]
+        arr[i+1] = storage
+        is_sorted = False
+    # end for loop
+  # end while loop
+
+  return arr
+
+
+def merge_sort(arr):
+  if len(arr) > 1:
+    mid = len(arr)//2
+    left = arr[:mid]
+    right = arr[mid:]
+  
+    merge_sort(left)
+    merge_sort(right)
+  
+    i = j = 0
+  
+    while i < len(left) and j < len(right):
+      if left[i] < right[j]:
+        arr[i+j] = left[i]
+        i += 1
+      else:
+        arr[i+j] = right[j]
+        j += 1
+    if i < len(left):
+      arr[i+j] = left[i]
+      i += 1
+    while j < len(right):
+      arr[i+j] = right[j]
+      j+= 1
+    
+  return arr
